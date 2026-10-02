@@ -50,7 +50,7 @@ FILE EXPLANATION & ARCHITECTURE ROLE: embedding.py
 3. Production Considerations:
    - Singleton initialization: Instantiating `EmbeddingService()` once at module 
      level ensures we only load model parameters into RAM once on process startup.
-   - Batch encoding (`batch_size=32`): Much faster than looping single items 
+   - Batch encoding (`batch_size=8`): Much faster than looping single items 
      because it leverages vectorized SIMD operations in PyTorch/NumPy.
 ================================================================================
 """
