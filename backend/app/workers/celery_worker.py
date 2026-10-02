@@ -1,11 +1,3 @@
-import os
-import torch
-
-# Limit PyTorch CPU thread allocation to prevent memory spikes on 512MB instances
-torch.set_num_threads(1)
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-
 
 import uuid
 from celery import Celery

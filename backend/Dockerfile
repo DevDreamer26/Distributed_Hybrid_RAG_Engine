@@ -8,11 +8,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# 1. Install lightweight CPU-ONLY PyTorch (~180MB instead of 2.5GB CUDA runtime)
+# 1. Install lightweight CPU-ONLY PyTorch (~180MB )
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 
-# 2. Install remaining dependencies (pip will see torch is already satisfied and skip CUDA)
+# 2. Install remaining dependencies 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 

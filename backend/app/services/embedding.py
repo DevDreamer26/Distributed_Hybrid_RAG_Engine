@@ -1,11 +1,3 @@
-import os
-import torch
-
-# Limit PyTorch CPU thread allocation to prevent memory spikes on 512MB instances
-torch.set_num_threads(1)
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-
 
 from sentence_transformers import SentenceTransformer
 from app.core.config import settings
@@ -14,7 +6,7 @@ from app.core.config import settings
 class EmbeddingService:
     def __init__(self):
         # Loads all-MiniLM-L6-v2 (generates dense 384-dimensional vectors)
-        self.model = SentenceTransformer("all-MiniLM-L6-v2",device="cpu") ## Explicitly load model in low-memory CPU mode, just because of the 512MB RAM limit on the smallest cloud instances. This is a small model, so it should be fine.
+        self.model = SentenceTransformer("all-MiniLM-L6-v2") 
 
     def generate_embedding(self, text: str) -> list[float]:
         """Convert a single text chunk into a 384-dimensional vector."""
@@ -50,7 +42,7 @@ FILE EXPLANATION & ARCHITECTURE ROLE: embedding.py
 3. Production Considerations:
    - Singleton initialization: Instantiating `EmbeddingService()` once at module 
      level ensures we only load model parameters into RAM once on process startup.
-   - Batch encoding (`batch_size=8`): Much faster than looping single items 
+   - Batch encoding (`batch_size=32`): Much faster than looping single items 
      because it leverages vectorized SIMD operations in PyTorch/NumPy.
 ================================================================================
 """
