@@ -94,7 +94,7 @@ export default function App() {
           <h1>Distributed Hybrid RAG Engine</h1>
           <p>Two-Stage Information Retrieval: pgvector Dense + BM25 Sparse + Cross-Encoder Re-Ranking + Groq LLM</p>
         </div>
-        <a className="github-link" href="https://github.com" target="_blank" rel="noreferrer" aria-label="Visit GitHub" title="GitHub">
+        <a className="github-link" href="https://github.com/DevDreamer26/Distributed_Hybrid_RAG_Engine" target="_blank" rel="noreferrer" aria-label="Visit GitHub" title="GitHub">
           <svg className="github-mark" viewBox="0 0 19 19" aria-hidden="true">
             <use href="/icons.svg#github-icon" />
           </svg>
