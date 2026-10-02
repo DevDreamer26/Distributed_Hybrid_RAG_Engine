@@ -1,0 +1,283 @@
+:root {
+  --bg-primary: #0b0f19;
+  --bg-secondary: #131c2e;
+  --bg-card: #1e293b;
+  --accent: #38bdf8;
+  --accent-hover: #0284c7;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  padding: 2.5rem 1.5rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.25rem;
+}
+
+.navbar-copy {
+  min-width: 0;
+}
+
+.navbar h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.navbar p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.github-link:hover {
+  color: var(--accent);
+}
+
+.github-mark {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+}
+
+.github-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+/* 
+  FIX: align-items: start prevents the left column from stretching 
+  infinitely when the right column expands with results.
+*/
+.grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  align-items: start;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+/* Sidebar stays visible while scrolling long search results */
+.sidebar {
+  position: sticky;
+  top: 2rem;
+}
+
+.card h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 
+  FIX: Explicit height and flex layout prevent upload box distortion.
+*/
+.upload-box {
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  background-color: rgba(15, 23, 42, 0.4);
+}
+
+.upload-box:hover {
+  border-color: var(--accent);
+  background-color: rgba(56, 189, 248, 0.04);
+}
+
+.upload-box p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  word-break: break-all;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  background-color: var(--accent);
+  color: #0b0f19;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn:disabled {
+  background-color: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.search-input-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  min-width: 0;
+}
+
+input[type="text"]:focus {
+  outline: 2px solid var(--accent);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-COMPLETED { background-color: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+.status-PROCESSING { background-color: rgba(245, 158, 11, 0.15); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
+.status-PENDING { background-color: rgba(148, 163, 184, 0.15); color: var(--text-muted); border: 1px solid rgba(148, 163, 184, 0.3); }
+
+/* Synthesized LLM Answer Box */
+.ai-answer-card {
+  background-color: rgba(56, 189, 248, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+
+.ai-answer-card h3 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.ai-answer-card p {
+  color: #e2e8f0;
+  font-size: 0.92rem;
+  white-space: pre-wrap;
+}
+
+.result-item {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.content-snippet {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  word-break: break-word;
+}
+
+.metric-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.pill {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+.footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
